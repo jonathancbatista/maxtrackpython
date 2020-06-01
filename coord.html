@@ -1,0 +1,59 @@
+<html>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry&sensor=false"></script>
+
+	<body>
+		<table id="table">
+			<tr>
+				<th>Lat</th>
+				<th>Lon</th>
+				<th>Dist</th>
+			</tr>
+		</table>
+	</body>
+	<script type="text/javascript">
+		// be sure to include: https://maps.googleapis.com/maps/api/js?libraries=geometry&sensor=false
+
+		// this works just as expected
+
+		var origin = new google.maps.LatLng(-21.1864678, -47.8008703);
+		var destination = new google.maps.LatLng(-20.5801741, -47.8665536);
+		var distance = google.maps.geometry.spherical.computeDistanceBetween(origin, destination);
+
+		console.log("origin:\r\nlat: " + origin.lat() + ", lng: " + origin.lng());
+		console.log("destination:\r\nlat: " + destination.lat() + ", lng: " + destination.lng());
+		console.log("distance between origin and destination: " + distance);
+
+		console.log("interpolating 40 equal segments between origin and destination");
+		for (i=1; i <= 40; i++) {
+		    var step = (1/40);
+		    var interpolated = google.maps.geometry.spherical.interpolate(origin, destination, step * i);
+		    var distance = google.maps.geometry.spherical.computeDistanceBetween(origin, interpolated);
+
+		    var table = document.getElementById('table');
+
+		    var nodetr = document.createElement("TR");
+		    var nodelat = document.createElement("TD");
+		    var nodelng = document.createElement("TD");
+		    var nodedist = document.createElement("TD");
+			
+			var textnodelat = document.createTextNode(interpolated.lat());
+			var textnodelng = document.createTextNode(interpolated.lng());
+			var textnodedist = document.createTextNode(distance);
+
+			nodelat.appendChild(textnodelat);
+			nodelng.appendChild(textnodelng);
+			nodedist.appendChild(textnodedist);
+			
+			nodetr.appendChild(nodelat);
+			nodetr.appendChild(nodelng);
+			nodetr.appendChild(nodedist);
+
+			table.appendChild(nodetr);
+
+			// document.getElementById("myList").appendChild(node);
+
+		    // console.log("lat: " + interpolated.lat() + ", lng: " + interpolated.lng() + ", dist: " + distance);
+		}
+		
+	</script>
+</html>

@@ -1,0 +1,15 @@
+dnspython==1.16.0
+joblib==0.15.1
+numpy==1.18.4
+pandas==1.0.4
+pykerberos==1.2.1
+pymongo==3.10.1
+python-dateutil==2.8.1
+pytz==2020.1
+scikit-learn==0.23.1
+scipy==1.4.1
+simplejson==3.17.0
+six==1.15.0
+sklearn==0.0
+threadpoolctl==2.1.0
+tornado==6.0.4
